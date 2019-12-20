@@ -112,7 +112,6 @@ test_data = batchify(corpus.test, test_batch_size, args)
 
 from splitcross import SplitCrossEntropyLoss
 criterion = None
-
 ntokens = len(corpus.dictionary)
 model = model.RNNModel(args.model, ntokens, args.emsize, args.nhid, args.nlayers, args.dropout, args.dropouth, args.dropouti, args.dropoute, args.wdrop, args.tied)
 ###
@@ -141,7 +140,8 @@ if not criterion:
     criterion = SplitCrossEntropyLoss(args.emsize, splits=splits, verbose=False)
 ###
 if args.cuda:
-    model = model.cuda()
+    #model = nn.DataParallel(model).cuda()
+    model.cuda()
     criterion = criterion.cuda()
 ###
 params = list(model.parameters()) + list(criterion.parameters())
@@ -175,6 +175,8 @@ def train():
     start_time = time.time()
     ntokens = len(corpus.dictionary)
     hidden = model.init_hidden(args.batch_size)
+    #device = torch.device('cuda' if args.cuda else 'cpu')
+    #model = nn.DataParallel(model, dim=1).to(device)
     batch, i = 0, 0
     while i < train_data.size(0) - 1 - 1:
         bptt = args.bptt if np.random.random() < 0.95 else args.bptt / 2.

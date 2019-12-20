@@ -15,7 +15,7 @@ class RNNModel(nn.Module):
         self.hdrop = nn.Dropout(dropouth)
         self.drop = nn.Dropout(dropout)
         self.encoder = nn.Embedding(ntoken, ninp)
-        assert rnn_type in ['LSTM', 'QRNN', 'GRU'], 'RNN type is not supported'
+        assert rnn_type in ['LSTM', 'QRNN', 'GRU', 'biLSTM'], 'RNN type is not supported'
         if rnn_type == 'LSTM':
             self.rnns = [torch.nn.LSTM(ninp if l == 0 else nhid, nhid if l != nlayers - 1 else (ninp if tie_weights else nhid), 1, dropout=0) for l in range(nlayers)]
             if wdrop:
@@ -29,8 +29,13 @@ class RNNModel(nn.Module):
             self.rnns = [QRNNLayer(input_size=ninp if l == 0 else nhid, hidden_size=nhid if l != nlayers - 1 else (ninp if tie_weights else nhid), save_prev_x=True, zoneout=0, window=2 if l == 0 else 1, output_gate=True) for l in range(nlayers)]
             for rnn in self.rnns:
                 rnn.linear = WeightDrop(rnn.linear, ['weight'], dropout=wdrop)
+        elif rnn_type == 'biLSTM':
+            self.rnns = [torch.nn.LSTM(ninp if l == 0 else nhid, nhid//2 if l != nlayers - 1 else (ninp//2 if tie_weights else nhid), 1, dropout=0, bidirectional=True) for l in range(nlayers)]
+            if wdrop:
+                self.rnns = [WeightDrop(rnn, ['weight_hh_l0'], dropout=wdrop) for rnn in self.rnns] 
         print(self.rnns)
-        self.rnns = torch.nn.ModuleList(self.rnns)
+        #self.rnns = torch.nn.ModuleList(self.rnns)
+        self.rnns = torch.nn.ModuleList([torch.nn.DataParallel(r, dim=1) for r in self.rnns])
         self.decoder = nn.Linear(nhid, ntoken)
 
         # Optionally tie weights as in:
@@ -70,7 +75,6 @@ class RNNModel(nn.Module):
         #emb = self.idrop(emb)
 
         emb = self.lockdrop(emb, self.dropouti)
-
         raw_output = emb
         new_hidden = []
         #raw_output, hidden = self.rnn(emb, hidden)
@@ -89,7 +93,7 @@ class RNNModel(nn.Module):
 
         output = self.lockdrop(raw_output, self.dropout)
         outputs.append(output)
-
+###
         result = output.view(output.size(0)*output.size(1), output.size(2))
         if return_h:
             return result, hidden, raw_outputs, outputs
@@ -101,6 +105,12 @@ class RNNModel(nn.Module):
             return [(weight.new(1, bsz, self.nhid if l != self.nlayers - 1 else (self.ninp if self.tie_weights else self.nhid)).zero_(),
                     weight.new(1, bsz, self.nhid if l != self.nlayers - 1 else (self.ninp if self.tie_weights else self.nhid)).zero_())
                     for l in range(self.nlayers)]
+        if self.rnn_type == 'biLSTM':
+            a =[(weight.new(2, bsz, self.nhid//2 if l != self.nlayers - 1 else (self.ninp//2 if self.tie_weights else self.nhid)).zero_(),
+                    weight.new(2, bsz, self.nhid//2 if l != self.nlayers - 1 else (self.ninp//2 if self.tie_weights else self.nhid)).zero_())
+                    for l in range(self.nlayers)]
+            return a
+ 
         elif self.rnn_type == 'QRNN' or self.rnn_type == 'GRU':
             return [weight.new(1, bsz, self.nhid if l != self.nlayers - 1 else (self.ninp if self.tie_weights else self.nhid)).zero_()
-                    for l in range(self.nlayers)]
+                   for l in range(self.nlayers)]
