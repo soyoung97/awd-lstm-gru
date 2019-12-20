@@ -1,0 +1,80 @@
+Applying weight drop of 0.5 to weight_hh_l0
+Applying weight drop of 0.5 to weight_hh_l0
+Applying weight drop of 0.5 to weight_hh_l0
+[WeightDrop(
+  (module): LSTM(400, 1150)
+), WeightDrop(
+  (module): LSTM(1150, 1150)
+), WeightDrop(
+  (module): LSTM(1150, 400)
+)]
+Args: Namespace(alpha=2, batch_size=20, beta=1, bptt=70, clip=0.25, cuda=True, data='data/penn', dropout=0.4, dropoute=0.1, dropouth=0.25, dropouti=0.0, emsize=400, epochs=500, log_interval=200, lr=30, model='LSTM', nhid=1150, nlayers=3, nonmono=5, save='PTB-without.pt', seed=141, tied=True, wdecay=1.2e-06, wdrop=0.5)
+Model total parameters: 24221600
+Using []
+| epoch   1 |   200/  663 batches | lr 30.00 | ms/batch 63.18 | loss  3.51 | ppl    33.55
+| epoch   1 |   400/  663 batches | lr 30.00 | ms/batch 64.15 | loss  3.61 | ppl    36.96
+| epoch   1 |   600/  663 batches | lr 30.00 | ms/batch 62.73 | loss  3.69 | ppl    39.86
+-----------------------------------------------------------------------------------------
+| end of epoch   1 | time: 46.02s | valid loss  4.32 | valid ppl    75.28
+-----------------------------------------------------------------------------------------
+| epoch   2 |   200/  663 batches | lr 30.00 | ms/batch 64.52 | loss  3.62 | ppl    37.18
+| epoch   2 |   400/  663 batches | lr 30.00 | ms/batch 64.32 | loss  3.65 | ppl    38.38
+| epoch   2 |   600/  663 batches | lr 30.00 | ms/batch 64.20 | loss  3.69 | ppl    40.02
+-----------------------------------------------------------------------------------------
+| end of epoch   2 | time: 46.61s | valid loss  4.32 | valid ppl    75.04
+-----------------------------------------------------------------------------------------
+| epoch   3 |   200/  663 batches | lr 30.00 | ms/batch 65.23 | loss  3.62 | ppl    37.27
+| epoch   3 |   400/  663 batches | lr 30.00 | ms/batch 65.91 | loss  3.64 | ppl    37.98
+| epoch   3 |   600/  663 batches | lr 30.00 | ms/batch 65.11 | loss  3.68 | ppl    39.79
+-----------------------------------------------------------------------------------------
+| end of epoch   3 | time: 47.29s | valid loss  4.32 | valid ppl    74.82
+-----------------------------------------------------------------------------------------
+| epoch   4 |   200/  663 batches | lr 30.00 | ms/batch 66.83 | loss  3.63 | ppl    37.55
+| epoch   4 |   400/  663 batches | lr 30.00 | ms/batch 65.35 | loss  3.62 | ppl    37.24
+| epoch   4 |   600/  663 batches | lr 30.00 | ms/batch 66.08 | loss  3.66 | ppl    38.81
+-----------------------------------------------------------------------------------------
+| end of epoch   4 | time: 47.58s | valid loss  4.31 | valid ppl    74.69
+-----------------------------------------------------------------------------------------
+| epoch   5 |   200/  663 batches | lr 30.00 | ms/batch 65.49 | loss  3.63 | ppl    37.62
+| epoch   5 |   400/  663 batches | lr 30.00 | ms/batch 67.39 | loss  3.61 | ppl    36.79
+| epoch   5 |   600/  663 batches | lr 30.00 | ms/batch 66.26 | loss  3.65 | ppl    38.52
+-----------------------------------------------------------------------------------------
+| end of epoch   5 | time: 48.03s | valid loss  4.31 | valid ppl    74.66
+-----------------------------------------------------------------------------------------
+| epoch   6 |   200/  663 batches | lr 30.00 | ms/batch 65.60 | loss  3.62 | ppl    37.43
+| epoch   6 |   400/  663 batches | lr 30.00 | ms/batch 65.14 | loss  3.61 | ppl    37.02
+| epoch   6 |   600/  663 batches | lr 30.00 | ms/batch 66.50 | loss  3.62 | ppl    37.46
+-----------------------------------------------------------------------------------------
+| end of epoch   6 | time: 47.93s | valid loss  4.31 | valid ppl    74.62
+-----------------------------------------------------------------------------------------
+| epoch   7 |   200/  663 batches | lr 30.00 | ms/batch 66.14 | loss  3.61 | ppl    36.91
+| epoch   7 |   400/  663 batches | lr 30.00 | ms/batch 66.02 | loss  3.60 | ppl    36.58
+| epoch   7 |   600/  663 batches | lr 30.00 | ms/batch 66.06 | loss  3.62 | ppl    37.37
+-----------------------------------------------------------------------------------------
+| end of epoch   7 | time: 47.67s | valid loss  4.31 | valid ppl    74.63
+-----------------------------------------------------------------------------------------
+| epoch   8 |   200/  663 batches | lr 30.00 | ms/batch 65.68 | loss  3.59 | ppl    36.36
+| epoch   8 |   400/  663 batches | lr 30.00 | ms/batch 65.73 | loss  3.58 | ppl    35.98
+| epoch   8 |   600/  663 batches | lr 30.00 | ms/batch 65.25 | loss  3.60 | ppl    36.76
+-----------------------------------------------------------------------------------------
+| end of epoch   8 | time: 47.44s | valid loss  4.31 | valid ppl    74.65
+-----------------------------------------------------------------------------------------
+| epoch   9 |   200/  663 batches | lr 30.00 | ms/batch 66.11 | loss  3.58 | ppl    36.05
+| epoch   9 |   400/  663 batches | lr 30.00 | ms/batch 63.80 | loss  3.56 | ppl    35.22
+| epoch   9 |   600/  663 batches | lr 30.00 | ms/batch 64.44 | loss  3.59 | ppl    36.35
+-----------------------------------------------------------------------------------------
+| end of epoch   9 | time: 47.07s | valid loss  4.31 | valid ppl    74.66
+-----------------------------------------------------------------------------------------
+| epoch  10 |   200/  663 batches | lr 30.00 | ms/batch 65.90 | loss  3.57 | ppl    35.59
+| epoch  10 |   400/  663 batches | lr 30.00 | ms/batch 64.78 | loss  3.56 | ppl    35.10
+| epoch  10 |   600/  663 batches | lr 30.00 | ms/batch 65.12 | loss  3.58 | ppl    36.03
+-----------------------------------------------------------------------------------------
+| end of epoch  10 | time: 47.30s | valid loss  4.31 | valid ppl    74.69
+-----------------------------------------------------------------------------------------
+| epoch  11 |   200/  663 batches | lr 30.00 | ms/batch 65.54 | loss  3.56 | ppl    35.26
+| epoch  11 |   400/  663 batches | lr 30.00 | ms/batch 65.43 | loss  3.54 | ppl    34.42
+| epoch  11 |   600/  663 batches | lr 30.00 | ms/batch 65.50 | loss  3.57 | ppl    35.56
+-----------------------------------------------------------------------------------------
+| end of epoch  11 | time: 47.06s | valid loss  4.31 | valid ppl    74.73
+-----------------------------------------------------------------------------------------
+Done!
