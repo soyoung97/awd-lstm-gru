@@ -113,7 +113,8 @@ test_data = batchify(corpus.test, test_batch_size, args)
 from splitcross import SplitCrossEntropyLoss
 criterion = None
 ntokens = len(corpus.dictionary)
-model = model.RNNModel(args.model, ntokens, args.emsize, args.nhid, args.nlayers, args.dropout, args.dropouth, args.dropouti, args.dropoute, args.wdrop, args.tied)
+#model = model.RNNModel(args.model, ntokens, args.emsize, args.nhid, args.nlayers, args.dropout, args.dropouth, args.dropouti, args.dropoute, args.wdrop, args.tied)
+model = model.AttentiveRNNLanguageModel(embedding_size=args.emsize, vocab_size=ntokens, hidden_size=args.nhid, n_layers=args.nlayers, dropout_p_input=args.dropout, dropout_p_encoder = args.dropouti, dropout_p_decoder=args.dropoute, tie_weights=True)
 ###
 if args.resume:
     print('Resuming model ...')
