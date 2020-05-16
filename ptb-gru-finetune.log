@@ -1,0 +1,56 @@
+Applying weight drop of 0.5 to weight_hh_l0
+Applying weight drop of 0.5 to weight_hh_l0
+Applying weight drop of 0.5 to weight_hh_l0
+[WeightDrop(
+  (module): GRU(400, 1150)
+), WeightDrop(
+  (module): GRU(1150, 1150)
+), WeightDrop(
+  (module): GRU(1150, 400)
+)]
+Args: Namespace(alpha=2, batch_size=20, beta=1, bptt=70, clip=0.25, cuda=True, data='data/penn', dropout=0.4, dropoute=0.1, dropouth=0.25, dropouti=0.4, emsize=400, epochs=500, log_interval=200, lr=30, model='GRU', nhid=1150, nlayers=3, nonmono=5, save='PTB-GRU.pt', seed=141, tied=True, wdecay=1.2e-06, wdrop=0.5)
+Model total parameters: 19168700
+Using []
+| epoch   1 |   200/  663 batches | lr 30.00 | ms/batch 56.55 | loss  6.57 | ppl   712.10
+| epoch   1 |   400/  663 batches | lr 30.00 | ms/batch 57.01 | loss  6.55 | ppl   697.13
+| epoch   1 |   600/  663 batches | lr 30.00 | ms/batch 55.94 | loss  6.53 | ppl   686.03
+-----------------------------------------------------------------------------------------
+| end of epoch   1 | time: 40.44s | valid loss  6.52 | valid ppl   681.14
+-----------------------------------------------------------------------------------------
+| epoch   2 |   200/  663 batches | lr 30.00 | ms/batch 57.14 | loss  6.57 | ppl   714.86
+| epoch   2 |   400/  663 batches | lr 30.00 | ms/batch 57.16 | loss  6.55 | ppl   696.69
+| epoch   2 |   600/  663 batches | lr 30.00 | ms/batch 57.14 | loss  6.53 | ppl   683.96
+-----------------------------------------------------------------------------------------
+| end of epoch   2 | time: 40.82s | valid loss  6.52 | valid ppl   680.96
+-----------------------------------------------------------------------------------------
+| epoch   3 |   200/  663 batches | lr 30.00 | ms/batch 57.47 | loss  6.57 | ppl   716.02
+| epoch   3 |   400/  663 batches | lr 30.00 | ms/batch 57.44 | loss  6.55 | ppl   697.63
+| epoch   3 |   600/  663 batches | lr 30.00 | ms/batch 57.11 | loss  6.53 | ppl   683.83
+-----------------------------------------------------------------------------------------
+| end of epoch   3 | time: 40.85s | valid loss  6.52 | valid ppl   680.93
+-----------------------------------------------------------------------------------------
+| epoch   4 |   200/  663 batches | lr 30.00 | ms/batch 58.28 | loss  6.58 | ppl   718.70
+| epoch   4 |   400/  663 batches | lr 30.00 | ms/batch 57.17 | loss  6.55 | ppl   698.88
+| epoch   4 |   600/  663 batches | lr 30.00 | ms/batch 57.54 | loss  6.53 | ppl   686.42
+-----------------------------------------------------------------------------------------
+| end of epoch   4 | time: 40.95s | valid loss  6.52 | valid ppl   681.05
+-----------------------------------------------------------------------------------------
+| epoch   5 |   200/  663 batches | lr 30.00 | ms/batch 56.75 | loss  6.58 | ppl   717.62
+| epoch   5 |   400/  663 batches | lr 30.00 | ms/batch 58.25 | loss  6.55 | ppl   700.65
+| epoch   5 |   600/  663 batches | lr 30.00 | ms/batch 57.38 | loss  6.53 | ppl   688.25
+-----------------------------------------------------------------------------------------
+| end of epoch   5 | time: 41.08s | valid loss  6.52 | valid ppl   681.27
+-----------------------------------------------------------------------------------------
+| epoch   6 |   200/  663 batches | lr 30.00 | ms/batch 57.02 | loss  6.58 | ppl   723.04
+| epoch   6 |   400/  663 batches | lr 30.00 | ms/batch 56.70 | loss  6.56 | ppl   703.28
+| epoch   6 |   600/  663 batches | lr 30.00 | ms/batch 57.85 | loss  6.54 | ppl   691.06
+-----------------------------------------------------------------------------------------
+| end of epoch   6 | time: 41.16s | valid loss  6.52 | valid ppl   681.77
+-----------------------------------------------------------------------------------------
+| epoch   7 |   200/  663 batches | lr 30.00 | ms/batch 57.96 | loss  6.58 | ppl   723.48
+| epoch   7 |   400/  663 batches | lr 30.00 | ms/batch 57.72 | loss  6.56 | ppl   704.98
+| epoch   7 |   600/  663 batches | lr 30.00 | ms/batch 57.89 | loss  6.54 | ppl   691.47
+-----------------------------------------------------------------------------------------
+| end of epoch   7 | time: 41.17s | valid loss  6.52 | valid ppl   681.90
+-----------------------------------------------------------------------------------------
+Done!
